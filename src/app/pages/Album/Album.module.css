@@ -1,0 +1,7 @@
+.album {
+    border-radius: 10px 10px 10px 10px;
+}
+
+.album_content {
+    border-radius: 0px 10px 10px 10px;
+}

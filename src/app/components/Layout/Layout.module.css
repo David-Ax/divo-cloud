@@ -1,0 +1,11 @@
+.layout {
+    position: relative;
+}
+
+.layout main {
+    margin: var(--main-space);
+    width: calc(100vw - var(--sidebar-width) - (2 * var(--main-space)));
+    height: calc(100svh - (2 * var(--main-space)));
+    position: relative;
+    left: var(--sidebar-width);
+}

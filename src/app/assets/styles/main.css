@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--app-theme-0) !important;
+    color: var(--app-theme-9) !important;
+}
+
+.mantine-Modal-root {
+}
+
+.mantine-Modal-inner {
+    padding: 0;
+    margin-left: var(--sidebar-width) !important;
+    width: calc(100% - var(--sidebar-width)) !important;
+}
+
+.mantine-Modal-body {
+    height: 100%;
+    padding: 0 !important;
+}
