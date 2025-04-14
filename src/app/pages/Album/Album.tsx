@@ -52,7 +52,7 @@ const Album: FC<IProps> = () => {
       <Stack p={25} bg={'var(--app-theme-2)'} className={styles.album_content}>
         {albumData?.map((albumItem) =>
           albumItem.id === activeTab ? (
-            <Stack gap={30} key={albumItem.id}>
+            <Stack gap={15} key={albumItem.id}>
               <AlbumInformation albumData={albumItem} />
               <Divider my="md" />
               <AlbumGallery albumData={albumItem} />

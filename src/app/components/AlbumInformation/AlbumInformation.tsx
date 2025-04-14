@@ -13,7 +13,7 @@ interface IStackItemProps {
 }
 
 const StackItem: FC<IStackItemProps> = ({ label, value }) => (
-  <Stack justify={'flex-start'} h={'100%'} gap={0}>
+  <Stack justify={'flex-start'} align={'flex-start'} h={'100%'} gap={0}>
     <Text c={'var(--app-theme-7)'} size={'xs'}>
       {label}
     </Text>
@@ -25,7 +25,7 @@ const StackItem: FC<IStackItemProps> = ({ label, value }) => (
 
 const AlbumInformation: FC<IProps> = (props) => {
   return (
-    <Flex gap={60} align={'center'} justify={'flex-start'}>
+    <Flex gap={60} align={'flex-start'} justify={'flex-start'}>
       <StackItem label="Titel" value={props.albumData.title} />
       <StackItem label="Anzahl Bilder" value={props.albumData.images.length} />
       <StackItem label="Datum" value={new Date(props.albumData.shootDate).toLocaleDateString()} />
