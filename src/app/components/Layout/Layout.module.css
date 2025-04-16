@@ -9,3 +9,8 @@
     position: relative;
     left: var(--sidebar-width);
 }
+
+.layout img {
+    height: 500px;
+    width: 100%;
+}

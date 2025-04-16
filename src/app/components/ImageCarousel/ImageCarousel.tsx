@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Carousel } from '@mantine/carousel'
 import { IAlbum, IImage } from '../../types/api'
+import Image from 'next/image'
 
 interface IProps {
   currentIndex: number
@@ -30,14 +31,15 @@ const ImageCarousel: FC<IProps> = (props) => {
     >
       {props.albumData.images.map((image: IImage, index: number) => (
         <Carousel.Slide key={index}>
-          <img
-            src={image.url}
-            onClick={() => props.setCurrentIndex(index)}
-            loading="lazy"
+          <Image
             alt={image.filename}
+            src={image.url}
+            quality={25}
+            width={200}
+            height={150}
+            priority
+            onClick={() => props.setCurrentIndex(index)}
             style={{
-              width: '100%',
-              height: '150px',
               borderRadius: '8px',
               cursor: 'pointer',
               objectFit: 'cover',

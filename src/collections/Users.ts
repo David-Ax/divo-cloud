@@ -10,17 +10,5 @@ export const Users: CollectionConfig = {
     useAsTitle: 'email',
   },
   auth: true,
-  fields: [
-    {
-      name: 'album',
-      label: 'Alben',
-      type: 'relationship', // Beziehungstyp ändern
-      relationTo: 'album', // Verknüpfung zur 'album'-Collection herstellen
-      hasMany: true,
-      admin: {
-        isClearable: true,
-        isSortable: true,
-      },
-    },
-  ],
+  fields: [],
 }

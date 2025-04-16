@@ -1,10 +1,11 @@
 import { FC, useState } from 'react'
 import Masonry from 'react-masonry-css'
-import { Box, Image } from '@mantine/core'
+import { Box } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import ImageModal from '../ImageModal/ImageModal'
 import { IAlbum, IImage } from '../../types/api'
 import './AlbumGallery.css'
+import Image from 'next/image'
 
 interface IProps {
   albumData: IAlbum
@@ -38,9 +39,18 @@ const AlbumGallery: FC<IProps> = ({ albumData }) => {
             <Image
               src={image.url}
               alt={image.filename}
-              radius="md"
+              quality={50}
               loading="lazy"
-              style={{ width: '100%', display: 'block', objectFit: 'cover' }}
+              width={400}
+              height={300}
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+                objectFit: 'cover',
+                borderRadius: '8px',
+              }}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </Box>
         ))}

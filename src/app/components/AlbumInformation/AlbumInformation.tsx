@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Flex, Stack, Text } from '@mantine/core'
+import { SimpleGrid, Stack, Text } from '@mantine/core'
 import { IAlbum } from '../../types/api'
 import Check from '../Check/Check'
 
@@ -25,7 +25,7 @@ const StackItem: FC<IStackItemProps> = ({ label, value }) => (
 
 const AlbumInformation: FC<IProps> = (props) => {
   return (
-    <Flex gap={60} align={'flex-start'} justify={'flex-start'}>
+    <SimpleGrid cols={5}>
       <StackItem label="Titel" value={props.albumData.title} />
       <StackItem label="Anzahl Bilder" value={props.albumData.images.length} />
       <StackItem label="Datum" value={new Date(props.albumData.shootDate).toLocaleDateString()} />
@@ -33,7 +33,7 @@ const AlbumInformation: FC<IProps> = (props) => {
       <Check condition={props.albumData.description}>
         <StackItem label="Anmerkung" value={props.albumData.description} />
       </Check>
-    </Flex>
+    </SimpleGrid>
   )
 }
 

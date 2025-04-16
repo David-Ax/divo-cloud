@@ -1,8 +1,9 @@
 import { FC, useEffect, useRef, useState } from 'react'
-import { Box, Flex, Image, Modal, Stack, Text } from '@mantine/core'
+import { Box, Flex, Modal, Rating, Stack, Text } from '@mantine/core'
 import { useHotkeys } from '@mantine/hooks'
 import { IAlbum } from '../../types/api'
 import ImageCarousel from '../ImageCarousel/ImageCarousel'
+import Image from 'next/image'
 
 interface IProps {
   opened: boolean
@@ -37,38 +38,45 @@ const ImageModal: FC<IProps> = (props) => {
       onClose={props.onClose}
       styles={{
         content: {
-          backgroundColor: 'rgba(255, 255, 255, 0.5)',
-          backdropFilter: 'blur(5px)',
-          WebkitBackdropFilter: 'blur(5px)',
+          backgroundColor: 'rgba(255,255,255,0.1)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
         },
       }}
     >
       <Flex p={25} gap={25} align="flex-start" h="100%" justify="space-between">
-        <Stack onClick={props.onClose} w="100%" justify="center" h="100%" align="center">
+        <Stack w="100%" justify="center" h="100%" align="center">
           <Image
+            quality={100}
+            priority
+            width={800}
+            height={600}
             style={{
               width: '100%',
-              height: '600px',
+              height: '70vh',
               borderRadius: '8px',
               cursor: 'pointer',
               objectFit: 'contain',
             }}
-            loading="lazy"
             src={props.albumData.images[currentIndex]?.url}
             alt="Album Image"
           />
-          <Flex onClick={props.onClose} align="center" justify="flex-start">
-            <Flex align="center" justify="flex-start" w="100%" h="100%" gap={5}>
-              <Text c="var(--app-theme-9)" size="3rem">
+          <Flex w={'100%'} align="center" justify="space-between">
+            <Flex align="center" justify="center" h="100%" gap={5}>
+              <Text c="var(--app-theme-0)" size="4rem">
                 {currentIndex + 1}
               </Text>
               <Text c="var(--app-theme-7)" size="1.5rem">
                 /
               </Text>
-              <Text c="var(--app-theme-7)" size="1.9rem">
+              <Text c="var(--app-theme-7)" size="1rem">
                 {props.albumData.images.length}
               </Text>
             </Flex>
+            <Rating defaultValue={2} size="xl" count={5} />
+            <Text c="var(--app-theme-7)" size="1.5rem">
+              Up and Down
+            </Text>
           </Flex>
         </Stack>
         <Box h="100%">

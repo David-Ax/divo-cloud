@@ -1,5 +1,6 @@
 :root {
-    --sidebar-width: 100px;
+    --sidebar-width: 0px;
+    --header-height: 50px;
     --main-space: 20px;
 
 }

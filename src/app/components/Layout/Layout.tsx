@@ -1,22 +1,29 @@
-import {FC, ReactNode} from 'react';
-import styles          from './Layout.module.css';
-import Sidebar         from '../Sidebar/Sidebar';
+import { FC, ReactNode } from 'react'
+import styles from './Layout.module.css'
+import WALLPAPER from '../../assets/images/wallpaper2.jpg'
+import Image from 'next/image'
 
 interface IProps {
-    children: ReactNode;
+  children: ReactNode
 }
 
-
 const Layout: FC<IProps> = (props) => {
-    return (
-        <div className={styles.layout}>
-            <Sidebar/>
-            <main>
-                {props.children}
-            </main>
-        </div>
-    );
-};
+  return (
+    <div className={styles.layout}>
+      <Image
+        src={WALLPAPER}
+        alt={'x'}
+        loading="lazy"
+        width={400}
+        height={300}
+        style={{
+          width: '100%',
+          objectFit: 'cover',
+        }}
+      />
+      <main>{props.children}</main>
+    </div>
+  )
+}
 
-
-export default Layout;
+export default Layout
