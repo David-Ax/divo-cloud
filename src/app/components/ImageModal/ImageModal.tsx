@@ -50,12 +50,16 @@ const ImageModal: FC<IProps> = (props) => {
             quality={100}
             priority
             width={800}
+            className={''}
             height={600}
             style={{
               width: '100%',
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              minHeight: '500px',
+              backgroundAttachment: 'fixed',
               height: '70vh',
               borderRadius: '8px',
-              cursor: 'pointer',
               objectFit: 'contain',
             }}
             src={props.albumData.images[currentIndex]?.url}

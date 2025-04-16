@@ -1,15 +1,14 @@
 import { FC, useEffect, useState } from 'react'
 import styles from './Album.module.css'
-import AlbumInformation from '../../components/AlbumInformation/AlbumInformation'
 import AlbumGallery from '../../components/AlbumGallery/AlbumGallery'
-import { Divider, Stack } from '@mantine/core'
+import { Stack } from '@mantine/core'
 import { IAlbum, IAlbumResponse } from '../../types/api'
+import Layout from '../../components/Layout/Layout'
 
 interface IProps {}
 
 const Album: FC<IProps> = () => {
-  const [albumData, setAlbumData] = useState<IAlbum[]>([])
-  const [activeTab, setActiveTab] = useState<string>(albumData?.[0]?.id || '')
+  const [albumData, setAlbumData] = useState<IAlbum>()
 
   useEffect(() => {
     const fetchPhotoshoot = async () => {
@@ -19,10 +18,7 @@ const Album: FC<IProps> = () => {
           throw new Error(`Fehler beim Laden der Daten: ${response.statusText}`)
         }
         const data: IAlbumResponse = await response.json()
-        setAlbumData(data.docs)
-        if (activeTab === '') {
-          setActiveTab(data.docs[0].id)
-        }
+        setAlbumData(data.docs[0])
       } catch (err) {
         console.error('Fehler:', err)
       } finally {
@@ -30,37 +26,18 @@ const Album: FC<IProps> = () => {
     }
 
     fetchPhotoshoot()
-  }, [activeTab])
-
+  }, [])
+  if (!albumData) {
+    return
+  }
   return (
-    <Stack gap={0} c={'var(--app-theme-9)'} className={styles.album}>
-      {/*<Flex gap={5} bg={'var(--app-theme-0)'} className={styles.album_head}>*/}
-      {/*  {albumData?.map((album) => (*/}
-      {/*    <Button*/}
-      {/*      key={album.id}*/}
-      {/*      radius={'10px 10px 0 0'}*/}
-      {/*      fw={activeTab === album.id ? '400' : '300'}*/}
-      {/*      c={activeTab === album.id ? 'var(--app-theme-9)' : 'var(--app-theme-7)'}*/}
-      {/*      bg={activeTab === album.id ? 'var(--app-theme-2)' : 'var(--app-theme-1)'}*/}
-      {/*      onClick={() => setActiveTab(album.id)}*/}
-      {/*    >*/}
-      {/*      {album.title}*/}
-      {/*    </Button>*/}
-      {/*  ))}*/}
-      {/*</Flex>*/}
-
-      <Stack className={styles.album_content}>
-        {albumData?.map((albumItem) =>
-          albumItem.id === activeTab ? (
-            <Stack gap={15} key={albumItem.id}>
-              <AlbumInformation albumData={albumItem} />
-              <Divider my="md" />
-              <AlbumGallery albumData={albumItem} />
-            </Stack>
-          ) : null,
-        )}
+    <Layout albumData={albumData}>
+      <Stack gap={0} c={'var(--app-theme-9)'} className={styles.album}>
+        <Stack p={'25'} className={styles.album_content}>
+          <AlbumGallery albumData={albumData} />
+        </Stack>
       </Stack>
-    </Stack>
+    </Layout>
   )
 }
 

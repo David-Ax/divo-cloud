@@ -14,10 +14,10 @@ interface IStackItemProps {
 
 const StackItem: FC<IStackItemProps> = ({ label, value }) => (
   <Stack justify={'flex-start'} align={'flex-start'} h={'100%'} gap={0}>
-    <Text c={'var(--app-theme-7)'} size={'xs'}>
+    <Text c={'var(--app-theme-4)'} size={'xs'}>
       {label}
     </Text>
-    <Text c={'var(--app-theme-9)'} size={'1.9rem'}>
+    <Text c={'var(--app-theme-1)'} size={'1.9rem'}>
       {value}
     </Text>
   </Stack>
@@ -25,7 +25,7 @@ const StackItem: FC<IStackItemProps> = ({ label, value }) => (
 
 const AlbumInformation: FC<IProps> = (props) => {
   return (
-    <SimpleGrid cols={5}>
+    <SimpleGrid spacing={50} cols={5}>
       <StackItem label="Titel" value={props.albumData.title} />
       <StackItem label="Anzahl Bilder" value={props.albumData.images.length} />
       <StackItem label="Datum" value={new Date(props.albumData.shootDate).toLocaleDateString()} />

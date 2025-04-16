@@ -3,14 +3,30 @@
 }
 
 .layout main {
-    margin: var(--main-space);
-    width: calc(100vw - var(--sidebar-width) - (2 * var(--main-space)));
+    width: calc(100vw - var(--sidebar-width));
     height: calc(100svh - (2 * var(--main-space)));
     position: relative;
     left: var(--sidebar-width);
 }
 
 .layout img {
+    
     height: 500px;
     width: 100%;
+}
+
+.layout_background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.layout_background_content {
+    border-radius: 10px;
+    margin: var(--main-space);
+    width: calc(100vw - (2 * var(--main-space)));
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    position: absolute;
 }
