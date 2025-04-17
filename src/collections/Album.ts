@@ -7,12 +7,38 @@ export const Album: CollectionConfig = {
     plural: 'Alben',
   },
   access: {
-    read: () => true,
+    read: async ({ req }) => {
+      const user = req.user
+
+      // Wenn kein User eingeloggt ist, kein Zugriff
+      if (!user) return false
+
+      // Admins haben immer Zugriff
+      if (user.role === 'admin') return true
+
+      // Für Viewer: Nur Alben, denen sie zugewiesen sind
+      return {
+        assignedUser: {
+          equals: user.id,
+        },
+      }
+    },
+    create: ({ req }) => {
+      const user = req.user
+      return user?.role === 'admin'
+    },
+    update: ({ req }) => {
+      const user = req.user
+      return user?.role === 'admin'
+    },
+    delete: ({ req }) => {
+      const user = req.user
+      return user?.role === 'admin'
+    },
   },
   admin: {
     useAsTitle: 'title',
   },
-
   fields: [
     {
       name: 'title',
@@ -21,12 +47,15 @@ export const Album: CollectionConfig = {
       required: true,
     },
     {
-      name: 'password',
-      label: 'Passwort',
-      type: 'text',
+      name: 'assignedUser',
+      label: 'Zugewiesener Benutzer',
+      type: 'relationship',
+      hasMany: true,
+      relationTo: 'users',
       required: true,
-      admin: {
-        description: 'Passwort zum Zugriff auf das Page (z.B. für Kunden)',
+      access: {
+        read: ({ req }) => req.user?.role === 'admin',
+        update: ({ req }) => req.user?.role === 'admin',
       },
     },
     {

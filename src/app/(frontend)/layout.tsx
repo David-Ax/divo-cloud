@@ -1,5 +1,4 @@
 import React from 'react'
-import './styles.css'
 import '@mantine/core/styles.css'
 import { mantineHtmlProps } from '@mantine/core'
 import '../assets/styles/variables.css'
