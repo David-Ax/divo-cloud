@@ -4,14 +4,12 @@
 
 .layout main {
     width: calc(100vw - var(--sidebar-width));
-    height: calc(100svh - (2 * var(--main-space)));
     position: relative;
     left: var(--sidebar-width);
 }
 
 .layout img {
-    
-    height: 500px;
+    height: 100%;
     width: 100%;
 }
 
@@ -22,11 +20,17 @@
     position: relative;
 }
 
+.layout_back {
+    position: absolute;
+    z-index: 5;
+    top: 20px;
+    left: 20px;
+}
+
 .layout_background_content {
-    border-radius: 10px;
     margin: var(--main-space);
-    width: calc(100vw - (2 * var(--main-space)));
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    width: calc(100vw);
+    background-color: rgba(73, 73, 73, 0.2);
+    backdrop-filter: blur(5px);
     position: absolute;
 }

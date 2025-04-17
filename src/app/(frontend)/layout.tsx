@@ -5,6 +5,7 @@ import { mantineHtmlProps } from '@mantine/core'
 import '../assets/styles/variables.css'
 import '../assets/styles/main.css'
 import '@mantine/carousel/styles.css'
+import Mantine from '../components/Mantine/Mantine'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
@@ -17,7 +18,9 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" {...mantineHtmlProps}>
       <body>
-        <main>{children}</main>
+        <main>
+          <Mantine>{children}</Mantine>
+        </main>
       </body>
     </html>
   )

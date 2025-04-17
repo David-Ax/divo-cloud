@@ -26,7 +26,7 @@ export const Album: CollectionConfig = {
       type: 'text',
       required: true,
       admin: {
-        description: 'Passwort zum Zugriff auf das Album (z.B. für Kunden)',
+        description: 'Passwort zum Zugriff auf das Page (z.B. für Kunden)',
       },
     },
     {
@@ -51,7 +51,7 @@ export const Album: CollectionConfig = {
       label: 'Beschreibung',
       type: 'textarea',
       admin: {
-        description: 'Kurze Beschreibung zum Album oder Shooting',
+        description: 'Kurze Beschreibung zum Page oder Shooting',
       },
     },
     {

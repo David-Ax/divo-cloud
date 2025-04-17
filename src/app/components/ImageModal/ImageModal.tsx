@@ -63,7 +63,7 @@ const ImageModal: FC<IProps> = (props) => {
               objectFit: 'contain',
             }}
             src={props.albumData.images[currentIndex]?.url}
-            alt="Album Image"
+            alt="Page Image"
           />
           <Flex w={'100%'} align="center" justify="space-between">
             <Flex align="center" justify="center" h="100%" gap={5}>
