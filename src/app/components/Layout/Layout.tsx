@@ -15,7 +15,7 @@ interface IProps {
 
 const Layout: FC<IProps> = (props) => {
   const items = [
-    { title: 'Album', href: '/' },
+    { title: 'Album', href: '/album' },
     { title: props.albumData.title, href: '/' + props.albumData.id },
   ].map((item, index) => (
     <Anchor fw={400} c={'var(--app-theme-1)'} size={'sm'} href={item.href} key={index}>
@@ -32,7 +32,7 @@ const Layout: FC<IProps> = (props) => {
           className={styles.layout_background_content}
         >
           <Flex gap={10} className={styles.layout_back} align={'center'} justify={'flex-start'}>
-            <Link href={'/'}>
+            <Link href={'/album'}>
               <IconChevronLeft size={30} color={'var(--app-theme-1)'} />
             </Link>
             <Breadcrumbs

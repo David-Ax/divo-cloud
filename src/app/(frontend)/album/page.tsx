@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { IAlbum, IAlbumResponse } from '../../types/api'
 import { useRouter } from 'next/navigation'
-import { Avatar, Badge, Box, Divider, Flex, Stack, Text } from '@mantine/core'
+import { Avatar, Badge, Box, Button, Divider, Flex, HoverCard, Stack, Text } from '@mantine/core'
 import Header from '../../components/Header/Header'
 import AlbumGallery from '../../components/AlbumGallery/AlbumGallery'
 
@@ -15,13 +15,13 @@ export default function AlbumPage() {
     const fetchPhotoshoot = async () => {
       const isLoggedIn = localStorage.getItem('isLoggedIn')
       if (!isLoggedIn) {
-        router.push('/login')
+        router.push('/')
         return
       }
 
       try {
         const response = await fetch('http://localhost:3000/api/album', {
-          credentials: 'include', // wichtig für geschützte Endpunkte
+          credentials: 'include',
         })
 
         if (!response.ok) {
@@ -37,6 +37,11 @@ export default function AlbumPage() {
 
     fetchPhotoshoot()
   }, [])
+
+  const handleLogout = () => {
+    localStorage.clear()
+    router.push('/')
+  }
 
   if (!albumData) return null
 
@@ -62,7 +67,21 @@ export default function AlbumPage() {
             <Text ta="right" size="sm" c="var(--app-theme-8)">
               {userName}
             </Text>
-            <Avatar />
+            <HoverCard shadow="md">
+              <HoverCard.Target>
+                <Avatar />
+              </HoverCard.Target>
+              <HoverCard.Dropdown>
+                <Stack gap={0}>
+                  <Text ta="center" size="sm" c="var(--app-theme-8)">
+                    Melden Sie sich ab:
+                  </Text>
+                  <Button onClick={() => handleLogout()} variant={'light'} color={'red'}>
+                    Abmelden
+                  </Button>
+                </Stack>
+              </HoverCard.Dropdown>
+            </HoverCard>
           </Flex>
         </Flex>
         <Divider />

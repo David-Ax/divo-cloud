@@ -6,6 +6,24 @@ export const Users: CollectionConfig = {
     singular: 'Benutzerkonto',
     plural: 'Benutzerkonten',
   },
+  access: {
+    read: ({ req }) => {
+      const user = req.user
+      return user?.role === 'admin'
+    },
+    create: ({ req }) => {
+      const user = req.user
+      return user?.role === 'admin'
+    },
+    update: ({ req }) => {
+      const user = req.user
+      return user?.role === 'admin'
+    },
+    delete: ({ req }) => {
+      const user = req.user
+      return user?.role === 'admin'
+    },
+  },
   admin: {
     useAsTitle: 'email',
   },

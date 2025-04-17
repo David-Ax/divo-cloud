@@ -7,12 +7,27 @@ export const Media: CollectionConfig = {
     plural: 'Bilder',
   },
   access: {
-    read: () => true,
+    read: async ({ req }) => {
+      const user = req.user
+      return user?.role === 'viewer' || user?.role === 'admin'
+    },
+    create: ({ req }) => {
+      const user = req.user
+      return user?.role === 'admin'
+    },
+    update: ({ req }) => {
+      const user = req.user
+      return user?.role === 'admin'
+    },
+    delete: ({ req }) => {
+      const user = req.user
+      return user?.role === 'admin'
+    },
   },
   fields: [
     {
       name: 'rating',
-      label:"Bewertung",
+      label: 'Bewertung',
       type: 'select',
       hasMany: false,
       admin: {
@@ -48,14 +63,13 @@ export const Media: CollectionConfig = {
           label: 'Unbrauchbar',
           value: 'unusable',
         },
-      ]
-
+      ],
     },
     {
       name: 'note',
-      label:"Anmerkung",
+      label: 'Anmerkung',
       type: 'textarea',
-    }
+    },
   ],
   upload: true,
 }
