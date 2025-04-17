@@ -3,3 +3,55 @@
     background-color: var(--app-theme-9);
     padding: 0 var(--main-space);
 }
+
+.gradient {
+    background: linear-gradient(90deg,
+    rgb(173, 216, 238) 0%,
+    rgb(183, 249, 200) 20%,
+    rgb(255, 228, 181) 40%,
+    rgb(255, 220, 185) 60%,
+    rgb(176, 224, 230) 70%,
+    rgb(135, 206, 235) 85%,
+    rgb(173, 216, 230) 100%);
+
+
+    background-size: 200% 200%;
+    position: relative;
+    overflow: hidden;
+    animation: gradientShift 30s infinite linear;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.glow::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.75) 60%);
+    transform: translate(-50%, -50%);
+    animation: glowEffect 400ms ease-out;
+}
+
+@keyframes glowEffect {
+    from {
+        width: 0%;
+        opacity: 1;
+    }
+    to {
+        width: 100%;
+        opacity: 0;
+    }
+}

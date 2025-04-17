@@ -1,9 +1,0 @@
-.album {
-    transition: var(--transition);
-}
-
-.album:hover {
-    opacity: 50%;
-    background-color: var(--app-theme-2) !important;
-    cursor: pointer;
-}

@@ -9,8 +9,10 @@ interface IProps {
 
 const AlbumInformation: FC<IProps> = (props) => {
   return (
-    <Stack align={'center'} w={'100%'} justify={'center'} p={25} h={'100%'} gap={0}>
-      <Title c={'var(--app-theme-1)'}>{props.albumData.title}</Title>
+    <Stack ta={'center'} align={'center'} w={'100%'} justify={'center'} p={25} h={'100%'} gap={0}>
+      <Title size={'1.8rem'} c={'var(--app-theme-1)'}>
+        {props.albumData.title}
+      </Title>
       <Flex gap={10} align={'center'}>
         <Text c={'var(--app-theme-1)'}>
           {props.albumData.images.length} {props.albumData.images.length > 1 ? 'Bilder' : 'Bild'}

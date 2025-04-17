@@ -4,7 +4,7 @@ import styles from './Album.module.css'
 import { Center, Loader, Stack } from '@mantine/core'
 import { IAlbum } from '../../../types/api'
 import Layout from '../../../components/Layout/Layout'
-import AlbumGallery from '../../../components/AlbumGallery/AlbumGallery'
+import ImageGallery from '../../../components/ImageGallery/ImageGallery'
 
 interface Props {
   params: Promise<{ id: string }>
@@ -44,7 +44,7 @@ export default function Page({ params }: Props) {
     <Layout albumData={albumData}>
       <Stack gap={0} c={'var(--app-theme-9)'} className={styles.album}>
         <Stack p={'25'} className={styles.album_content}>
-          <AlbumGallery albumData={albumData} />
+          <ImageGallery albumData={albumData} />
         </Stack>
       </Stack>
     </Layout>

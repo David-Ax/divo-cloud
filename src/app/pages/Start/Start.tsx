@@ -1,9 +1,8 @@
 import { FC, useEffect, useState } from 'react'
-import { Paper, SimpleGrid, Stack, Text, Title } from '@mantine/core'
+import { Avatar, Badge, Box, Divider, Flex, Stack, Text } from '@mantine/core'
 import { IAlbum, IAlbumResponse } from '../../types/api'
-import Image from 'next/image'
-import styles from './Start.module.css'
-import Link from 'next/link'
+import AlbumGallery from '../../components/AlbumGallery/AlbumGallery'
+import Header from '../../components/Header/Header'
 
 interface IProps {}
 
@@ -31,42 +30,39 @@ const Start: FC<IProps> = (props) => {
     return
   }
   return (
-    <Stack p={'25px 50px'}>
-      <Stack gap={0}>
-        <Title order={1}>DiVo-Cloud</Title>
-        <Text>Verfügbare Alben</Text>
+    <Box>
+      <Header />
+      <Stack
+        p={{
+          base: '10px',
+          sm: '20px',
+          lg: '30px',
+        }}
+      >
+        <Flex gap={10} align={'center'} justify={'space-between'}>
+          <Stack gap={0}>
+            <Badge variant={'light'} color={'green'}>
+              Kostenlos
+            </Badge>
+            <Text fw={600} size={'1.5rem'}>
+              DIVO-Cloud
+            </Text>
+            <Text size={'sm'} c={'var(--app-theme-8)'}>
+              {albumData.length} {albumData.length < 1 ? 'Verfügbares Album' : 'Verfügbare Alben'}
+            </Text>
+          </Stack>
+          <Flex gap={10} align={'center'}>
+            <Text ta={'right'} size={'sm'} c={'var(--app-theme-8)'}>
+              Max Mustermann
+            </Text>
+            <Avatar />
+          </Flex>
+        </Flex>
+
+        <Divider />
+        <AlbumGallery albumData={albumData} />
       </Stack>
-      <SimpleGrid cols={4}>
-        {albumData.map((album: IAlbum, index: number) => {
-          return (
-            <Link href={`/album/${album.id}`} key={index}>
-              <Paper className={styles.album} radius={10} p={10} bg={'var(--app-theme-1)'}>
-                <Image
-                  src={album.images[0].url}
-                  alt={album.images[0].filename}
-                  quality={50}
-                  width={400}
-                  height={300}
-                  style={{
-                    width: '100%',
-                    objectFit: 'cover',
-                    borderRadius: '8px',
-                  }}
-                />
-                <Stack gap={0}>
-                  <Text c={'var(--app-theme-9)'} fw={500}>
-                    {album.title}
-                  </Text>
-                  <Text c={'var(--app-theme-7)'} fw={300}>
-                    {album.images.length} {album.images.length > 1 ? 'Bilder' : 'Bild'}
-                  </Text>
-                </Stack>
-              </Paper>
-            </Link>
-          )
-        })}
-      </SimpleGrid>
-    </Stack>
+    </Box>
   )
 }
 
