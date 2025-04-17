@@ -16,7 +16,7 @@ interface IProps {
 const Layout: FC<IProps> = (props) => {
   const items = [
     { title: 'Album', href: '/album' },
-    { title: props.albumData.title, href: '/' + props.albumData.id },
+    { title: props.albumData.title, href: '/album/' + props.albumData.id },
   ].map((item, index) => (
     <Anchor fw={400} c={'var(--app-theme-1)'} size={'sm'} href={item.href} key={index}>
       {item.title}
