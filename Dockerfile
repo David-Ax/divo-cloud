@@ -1,7 +1,7 @@
 FROM node:22.12.0-alpine AS base
 
 # Installiere corepack und pnpm v9 direkt
-RUN corepack enable && corepack prepare pnpm@9.0.6 --activate && pnpm env use 9.0.6
+RUN corepack enable && corepack prepare pnpm@10.8.1 --activate
 
 # Installiere Abhängigkeiten nur wenn notwendig
 FROM base AS deps
@@ -10,7 +10,6 @@ WORKDIR /app
 
 # Kopiere package.json und pnpm-lock.yaml
 COPY package.json pnpm-lock.yaml ./
-RUN corepack prepare pnpm@9.0.6 --activate
 
 # Installiere Abhängigkeiten mit pnpm v9
 RUN pnpm install --frozen-lockfile
