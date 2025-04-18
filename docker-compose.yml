@@ -1,6 +1,14 @@
-version: '3'
-
 services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - payload
+
   payload:
     image: node:18-alpine
     ports:
@@ -9,7 +17,7 @@ services:
       - .:/home/node/app
       - node_modules:/home/node/app/node_modules
     working_dir: /home/node/app/
-    command: sh -c "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm dev"
+    command: sh -c "npm install -g pnpm@9 && pnpm install && pnpm dev"
     env_file:
       - .env
 
